@@ -1,8 +1,8 @@
-import { BrowserWindow } from 'electron'
+import { app, BrowserWindow, Menu } from 'electron';
 import path from 'path'
 import { fileURLToPath } from 'url'
 import { ipcMain } from 'electron'
-// const { ipcMain } = require('electron');
+
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
@@ -16,19 +16,17 @@ export function createWindow() {
     }
   })
 
-    ipcMain.on('ping', (event, arg) => {
-        console.log(arg); // "Hello from renderer"
-    });
+  ipcMain.on('ping', (event, arg) => {
+    console.log(arg);
+  });
 
-    ipcMain.handle('get-data', async (event, arg) => {
-    // You can do async work here
-    return 'Data: '+ arg;
-    });
-  // Dev server
+  ipcMain.handle('get-data', async (event, arg) => {
+    return 'Data: ' + arg;
+  });
+
+  Menu.setApplicationMenu(null);
   win.loadURL('http://localhost:5173')
 
-  // For production (after `vite build`)
-  // win.loadFile(path.join(__dirname, '../dist/index.html'))
 
 
 }

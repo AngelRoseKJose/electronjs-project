@@ -1,6 +1,6 @@
 <script>
     function showAlert(){
-        alert("Reju is our big a10thi")
+        alert("Hi there!")
     }
 </script>
 
